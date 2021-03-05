@@ -29,10 +29,9 @@ CREATE TABLE "departments" (
 
 select * from departments;
 
-
 CREATE TABLE "dept_manager" (
     "dept_no" VARCHAR(15)   NOT NULL,
-    "dept_emp" VARCHAR(15)   NOT NULL
+    "emp_no" INT   NOT NULL
 );
 
 select * from dept_manager;
@@ -45,11 +44,8 @@ CREATE TABLE "dept_emp" (
 select * from dept_emp;
 
 CREATE TABLE "titles" (
-    "title_id" VARCHAR(15)   NOT NULL,
-    "titles" VARCHAR(30)   NOT NULL,
-    CONSTRAINT "pk_titles" PRIMARY KEY (
-        "title_id"
-     )
+    "title_id" VARCHAR(30)   NOT NULL,
+    "titles" VARCHAR(30)   NOT NULL
 );
 
 select * from titles;
@@ -61,12 +57,16 @@ CREATE TABLE "salaries" (
 
 select * from salaries;
 
-CREATE TABLE "employees_dept_emp_salaries_junction" (
-    "emp_no" INT   NOT NULL
+CREATE TABLE "employees_departments_junction" (
+    "emp_no" INT   NOT NULL,
+    "dept_no" varchar(15)   NOT NULL
 );
 
 ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager__dept_no" FOREIGN KEY("", "dept_no")
 REFERENCES "departments" ("", "dept_no");
+
+ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_emp_no" FOREIGN KEY("emp_no")
+REFERENCES "employees" ("emp_no");
 
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
@@ -74,9 +74,15 @@ REFERENCES "employees" ("emp_no");
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp__dept_no" FOREIGN KEY("", "dept_no")
 REFERENCES "departments" ("", "dept_no");
 
+ALTER TABLE "titles" ADD CONSTRAINT "fk_titles_title_id" FOREIGN KEY("title_id")
+REFERENCES "employees" ("emp_title_id");
+
 ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
-ALTER TABLE "employees_dept_emp_salaries_junction" ADD CONSTRAINT "fk_employees_dept_emp_salaries_junction_emp_no" FOREIGN KEY("emp_no")
+ALTER TABLE "employees_departments_junction" ADD CONSTRAINT "fk_employees_departments_junction_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
+
+ALTER TABLE "employees_departments_junction" ADD CONSTRAINT "fk_employees_departments_junction_dept_no" FOREIGN KEY("dept_no")
+REFERENCES "departments" ("dept_no");
 
