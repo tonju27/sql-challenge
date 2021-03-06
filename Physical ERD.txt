@@ -8,11 +8,11 @@ rel titles
 -
 emp_no INT PK
 emp_title_id VARCHAR(30)
-birth_date VARCHAR(20)
+birth_date DATE
 first_name VARCHAR(30)
 last_name VARCHAR(30)
 sex VARCHAR(5)
-hire_date VARCHAR(20)
+hire_date DATE
 
 departments
 -
