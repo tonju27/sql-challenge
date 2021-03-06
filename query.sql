@@ -2,16 +2,16 @@
 -- Link to schema: https://app.quickdatabasediagrams.com/#/d/6WkWEH
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
--- Logical ERD
+-- Physical ERD
 
 CREATE TABLE "employees" (
     "emp_no" INT   NOT NULL,
     "emp_title_id" VARCHAR(30)   NOT NULL,
-    "birth_date" VARCHAR(20)   NOT NULL,
+    "birth_date" DATE   NOT NULL,
     "first_name" VARCHAR(30)   NOT NULL,
     "last_name" VARCHAR(30)   NOT NULL,
     "sex" VARCHAR(5)   NOT NULL,
-    "hire_date" VARCHAR(20)   NOT NULL,
+    "hire_date" DATE   NOT NULL,
     CONSTRAINT "pk_employees" PRIMARY KEY (
         "emp_no"
      )
